@@ -1,0 +1,25 @@
+.env
+.env.local
+*.key
+.artifacts/
+el-openapi.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ruff_cache/
+
+# uv.lock jest wersjonowany celowo — to on czyni obraz odtwarzalnym.
+
+# Node
+node_modules/
+
+# Szkielety tworzone odruchowo przez `elevenlabs agents pull`. Zostają puste:
+# toole i testy nie są częścią konfiguracji agenta. Prawdziwe definicje
+# trzymamy w agent_configs/tools/ i agent_configs/procedures/.
+tool_configs/
+test_configs/
+tools.json
+tests.json

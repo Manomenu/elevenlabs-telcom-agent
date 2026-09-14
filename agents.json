@@ -1,0 +1,17 @@
+{
+    "agents": [
+        {
+            "config": "agent_configs\\Telecommunication-platform-agent.json",
+            "id": "agent_9601m28wb4h1ej18px9j1eqmpbv7",
+            "branch_id": "agtbrch_7401m28wb5v3f0g8e80hj5jkb2b0",
+            "version_id": "agtvrsn_4201m29544taear8ezrawxbrqp1g",
+            "branches": {
+                "dev": {
+                    "config": "agent_configs\\Telecommunication-platform-agent.dev.json",
+                    "branch_id": "agtbrch_0401m28xqcy0f7fv667vtmyepts8",
+                    "version_id": "agtvrsn_4901m2awnm5me74bnhs7hns04c76"
+                }
+            }
+        }
+    ]
+}
