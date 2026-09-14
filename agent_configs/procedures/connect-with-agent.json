@@ -1,0 +1,6 @@
+{
+  "name": "connect-with-agent",
+  "type": "free_form",
+  "trigger": "The customer wants to talk to an agent, asks to be connected, or starts the conversation and needs to be greeted.",
+  "content": "---\nname: connect-with-agent\ntrigger: The customer wants to talk to an agent, asks to be connected, or starts the conversation and needs to be greeted.\n---\n\n# connect-with-agent\n\nRun these steps in order. Do not skip a step and do not add anything that is not written here.\n\n## Step 1 — Greet\n\nSay exactly:\n\n\"Hello, I'm Suze, how can I help you?\"\n\nThen wait for the customer to reply.\n\n## Step 2 — Echo and hand off\n\nAs soon as the customer says anything at all, reply with exactly two messages, one after the other, in the same turn:\n\n1. `You asked \"<echo>\"` — where `<echo>` is the customer's message repeated back verbatim, in their own words, inside the quotation marks. Do not summarise, correct, translate or rephrase it.\n2. \"Sorry, I can't help you, please talk to the bot agent.\"\n\n## Step 3 — End\n\nEnd the procedure immediately after the second message. Do not answer the customer's question, do not offer alternatives, and do not ask a follow-up question — even if the request is something you could otherwise handle."
+}

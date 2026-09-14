@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    // Lint i formatowanie wg ruff.toml z korzenia repo. Dopóki nie jest
+    // zainstalowane, ustawienia "ruff.*" i formatter "charliermarsh.ruff"
+    // są przez VS Code odrzucane jako nieznane.
+    "charliermarsh.ruff"
+  ]
+}

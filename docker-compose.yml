@@ -1,0 +1,45 @@
+services:
+  webhook-backend:
+    build:
+      # backend/ jest samowystarczalny: własny pyproject.toml i Dockerfile.
+      context: ./backend
+    image: elevenlabs-telco-webhook:dev
+    container_name: elevenlabs-telco-webhook
+    ports:
+      - "18080:8080"
+    environment:
+      ARTIFACTS_DIR: /artifacts
+    volumes:
+      # Log ma być czytelny z repo, nie tylko w kontenerze.
+      - ./.artifacts:/artifacts
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request;urllib.request.urlopen('http://localhost:8080/health')\" || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+    networks:
+      - telco
+    restart: unless-stopped
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: elevenlabs-telco-ngrok
+    # ElevenLabs woła webhooki z internetu, więc backend musi mieć publiczny
+    # adres — stąd tunel. Kieruje na serwis po nazwie w sieci compose.
+    command: ["http", "webhook-backend:8080", "--log", "stdout"]
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN:?Ustaw NGROK_AUTHTOKEN w .env}
+    ports:
+      # API ngroka — stąd skrypt up.sh odczytuje publiczny URL.
+      - "14040:4040"
+    depends_on:
+      webhook-backend:
+        condition: service_healthy
+    networks:
+      - telco
+    restart: unless-stopped
+
+networks:
+  telco:
+    driver: bridge

@@ -1,0 +1,14 @@
+{
+  // Backend ma własnego venva (uv sync w backend/). Bez tego Pylance nie widzi
+  // fastapi ani pydantic i zgłasza "Import could not be resolved".
+  "python.defaultInterpreterPath": "${workspaceFolder}/backend/.venv/Scripts/python.exe",
+
+  // Ścieżki analizy (extraPaths, typeCheckingMode) celowo NIE tutaj:
+  // przy obecnym pyrightconfig.json VS Code je odrzuca jako konflikt.
+  // Jedynym źródłem prawdy dla Pylance jest pyrightconfig.json.
+
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.ruff_cache": true
+  }
+}

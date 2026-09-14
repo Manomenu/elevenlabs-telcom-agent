@@ -1,0 +1,30 @@
+# Jedna konfiguracja lintu i formatowania na całe repo. Ruff szuka jej w górę
+# drzewa, więc obejmuje oba drzewa Pythona — backend/ (usługa w kontenerze)
+# i scripts/ (narzędzia CLI na hoście). Zależności zostają osobno, w
+# pyproject.toml każdego z nich.
+target-version = "py312"
+line-length = 88
+
+# Katalogi, w których mogą stać moduły importowane bez prefiksu pakietu.
+# Bez tego isort bierze `el_common` i `app` za biblioteki zewnętrzne
+# i wrzuca je do złej sekcji importów.
+src = ["backend", "scripts/.internal"]
+
+[lint]
+select = [
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "I",    # isort — kolejność importów
+    "UP",   # pyupgrade — nowsza składnia
+    "B",    # bugbear — realne pułapki
+    "SIM",  # uproszczenia
+    "RUF",  # reguły ruffa
+]
+
+[lint.per-file-ignores]
+# Skrypty w .internal/ dopisują swój katalog do sys.path przed importem
+# lokalnych modułów — import nie może wtedy stać na górze pliku.
+"scripts/.internal/*.py" = ["E402"]
+
+[format]
+quote-style = "double"
