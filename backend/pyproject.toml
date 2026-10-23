@@ -18,3 +18,6 @@ dev = [
 # Brak [build-system] celowo: to usługa uruchamiana przez `uvicorn app:app`,
 # nie biblioteka do zbudowania. pyproject.toml służy tu wyłącznie jako
 # deklaracja zależności; lint i formatowanie bierze ruff.toml z korzenia repo.
+
+[tool.uv]
+exclude-newer = "7 days"  # supply-chain cooldown: skip releases younger than a week
